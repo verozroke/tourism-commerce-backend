@@ -1,0 +1,53 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id    String  @unique @default(uuid())
+  email String  @unique
+  name  String
+  hashedPassword String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model TourInfo {
+  id String  @unique @default(uuid())
+  title String @unique
+  location String
+  price Float
+  rate Float
+  rateAmount Int
+  duration String
+  imageUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model TourGuide {
+  id String  @unique @default(uuid())
+  fullname String @unique
+  about String
+  journey String
+  facebookLink String
+  instagramLink String
+  twitterLink String
+  imageUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model Email {
+  id String  @unique @default(uuid())
+  email String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
