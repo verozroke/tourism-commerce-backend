@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTourInfoDto {
   @IsNotEmpty()
@@ -21,13 +22,17 @@ export class CreateTourInfoDto {
   @IsNumber()
   public rateAmount: number
 
-  @IsNotEmpty()
-  @IsString()
-  public duration: string
+
 
   @IsNotEmpty()
   @IsString()
   public imageUrl: string
+
+  @IsNotEmpty()
+  @Type(() => Date)
+  @IsDate()
+  date: Date
+
 }
 
 
@@ -54,9 +59,11 @@ export class UpdateTourInfoDto {
 
   @IsNotEmpty()
   @IsString()
-  public duration: string
+  public imageUrl: string
 
   @IsNotEmpty()
-  @IsString()
-  public imageUrl: string
+  @Type(() => Date)
+  @IsDate()
+  date: Date
+
 }

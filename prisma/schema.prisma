@@ -24,12 +24,19 @@ model TourInfo {
   location String
   price Float
   rate Float
+  date DateTime
+  
+  ageGroup AgeGroup? @relation("TourInfoToAgeGroup")
+  
   rateAmount Int
-  duration String
+  duration Duration? @relation("TourInfoToDuration")
   imageUrl String
+  isFeatured String?
+  specials Special[] @relation("TourInfoToSpecial")
+  tags Tag[] @relation("TourInfoToTag")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
-}
+} 
 
 model TourGuide {
   id String  @unique @default(uuid())
@@ -50,4 +57,46 @@ model Email {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
+}
+
+model Special {
+  id String  @unique @default(uuid())
+  name String @unique
+  tourInfoId String 
+  tourInfo TourInfo @relation("TourInfoToSpecial", fields: [tourInfoId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  @@index([tourInfoId])
+}
+
+model Tag {
+  id String  @unique @default(uuid())
+  name String @unique
+  tourInfoId String 
+  tourInfo TourInfo @relation("TourInfoToTag", fields: [tourInfoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  @@index([tourInfoId])
+}
+
+model AgeGroup {
+  id String  @unique @default(uuid())
+  name String 
+  tourInfoId String @unique
+  tourInfo TourInfo @relation("TourInfoToAgeGroup", fields: [tourInfoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  @@index([tourInfoId])
+}
+
+
+model Duration {
+  id String @unique @default(uuid())
+  name String 
+  tourInfoId String @unique
+  tourInfo TourInfo @relation("TourInfoToDuration", fields: [tourInfoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  @@index([tourInfoId])
 }

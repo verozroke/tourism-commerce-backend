@@ -8,7 +8,6 @@ import { CreateTourGuideDto, UpdateTourGuideDto } from './dto/tour-guides.dto';
 export class TourGuidesController {
   constructor(private readonly tourGuidesService: TourGuidesService) { }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   getTourGuides(@Req() req: Request, @Res() res: Response) {
     return this.tourGuidesService.getTourGuides(req, res)

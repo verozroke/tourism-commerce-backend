@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { TourInfosService } from './tour-infos.service';
 import { JwtAuthGuard } from 'src/auth/jwt.guard';
@@ -10,8 +10,18 @@ export class TourInfosController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  getTourInfos(@Req() req: Request, @Res() res: Response) {
-    return this.tourInfosService.getTourInfos(req, res)
+  getTourInfos(@Query() query, @Req() req: Request, @Res() res: Response) {
+    return this.tourInfosService.getTourInfos(query, req, res)
+  }
+
+  @Get('/featured')
+  getFeaturedTourInfos(@Req() req: Request, @Res() res: Response) {
+    return this.tourInfosService.getFeaturedTourInfos(req, res)
+  }
+
+  @Get('/top-destinations')
+  getTopDestinations(@Req() req: Request, @Res() res: Response) {
+    return this.tourInfosService.getTopDestinations(req, res)
   }
 
   @UseGuards(JwtAuthGuard)
@@ -36,6 +46,11 @@ export class TourInfosController {
   @Delete('/tour-info/:id')
   deleteTourInfo(@Param() params: { id: string }, @Req() req: Request, @Res() res: Response) {
     return this.tourInfosService.deleteTourInfo(params.id, req, res)
+  }
+
+  @Get('/search/:q')
+  searchTourInfo(@Param() params: { q: string }, @Req() req: Request, @Res() res: Response) {
+    return this.tourInfosService.searchTourInfos(params.q, req, res)
   }
 
 
