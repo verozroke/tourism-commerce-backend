@@ -14,6 +14,12 @@ export class TourInfosController {
     return this.tourInfosService.getTourInfos(query, req, res)
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('/length')
+  getTourLength(@Query() query, @Req() req: Request, @Res() res: Response) {
+    return this.tourInfosService.getTourLength(query, req, res)
+  }
+
   @Get('/featured')
   getFeaturedTourInfos(@Req() req: Request, @Res() res: Response) {
     return this.tourInfosService.getFeaturedTourInfos(req, res)
