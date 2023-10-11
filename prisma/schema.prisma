@@ -53,7 +53,7 @@ model TourInfo {
   itineraries     Itinerary[]      @relation("TourInfoToItinerary")
   inclusions      Inclusion[]      @relation("TourInfoToInclusion")
   reviews         Review[]         @relation("TourInfoToReview")
-  faqs            FAQ[]            @relation("TourInfoToFAQ")
+  faqs            Faq[]            @relation("TourInfoToFaq")
 
   @@id([id])
 }
@@ -143,14 +143,14 @@ model Itinerary {
   @@index([tourInfoId])
 }
 
-model FAQ {
+model Faq {
   id       String @unique @default(uuid())
   question String
   answer   String
 
   // Relations
   tourInfoId String
-  tourInfo   TourInfo @relation("TourInfoToFAQ", fields: [tourInfoId], references: [id])
+  tourInfo   TourInfo @relation("TourInfoToFaq", fields: [tourInfoId], references: [id])
 
   @@index([tourInfoId])
 }
