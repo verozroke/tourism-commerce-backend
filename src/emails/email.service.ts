@@ -26,7 +26,7 @@ export class EmailService {
       throw new BadRequestException('Email already exist')
     }
 
-    const email = await this.prisma.email.create({
+    await this.prisma.email.create({
       data: { email: bodyEmail }
     })
 

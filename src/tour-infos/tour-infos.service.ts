@@ -2,7 +2,6 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { Request, Response } from 'express';
 import { CreateTourInfoDto, UpdateTourInfoDto } from './dto/tour-info.dto';
-import { log } from 'console';
 
 export type DurationOption = 'Upto 1 Hour' | '1 to 4 Hours' | '4 Hours to 1 Day' | '1 to 3 Days' | '3 Days or More'
 export type AgeGroupOption = '1 & Up' | '3 & Up' | '7 & Up' | '13 & Up' | '18 & Up'
@@ -97,10 +96,7 @@ export class TourInfosService {
       },
     })
 
-
     return res.send({ length: tourInfosLength })
-
-
   }
 
   async searchTourInfos(q: string, req: Request, res: Response) {
@@ -270,7 +266,6 @@ export class TourInfosService {
     })
 
     return res.send(tourInfo)
-
   }
 
   async updateTourInfo(id: string, dto: UpdateTourInfoDto, req: Request, res: Response) {
@@ -314,7 +309,6 @@ export class TourInfosService {
     })
 
     return res.send(JSON.stringify(deletedTourInfo))
-
   }
 
 

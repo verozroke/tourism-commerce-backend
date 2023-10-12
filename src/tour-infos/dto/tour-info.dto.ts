@@ -44,7 +44,7 @@ export class CreateTourInfoDto {
 
   @IsNotEmpty()
   @IsNumber()
-  public season: number
+  public season: string
 
   @IsNotEmpty()
   @IsString()
@@ -100,7 +100,7 @@ export class UpdateTourInfoDto {
 
   @IsNotEmpty()
   @IsNumber()
-  public season: number
+  public season: string
 
   @IsNotEmpty()
   @IsString()
