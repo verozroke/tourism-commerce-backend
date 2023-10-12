@@ -12,7 +12,7 @@ model User {
   email          String   @unique
   name           String
   hashedPassword String
-  avatarUrl      String
+  avatarUrl      String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt()
 
@@ -32,7 +32,7 @@ model TourInfo {
   rate          Float
   date          DateTime
   rateAmount    Int
-  isFeatured    String?
+  isFeatured    Boolean?
   description   String
   activity      String
   physical      String

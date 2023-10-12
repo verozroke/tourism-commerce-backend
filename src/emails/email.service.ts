@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Param } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { Request, Response } from 'express'
 import { CreateEmailDto } from './dto/email.dto';
@@ -31,5 +31,27 @@ export class EmailService {
     })
 
     return res.send({ message: 'Email submitted successfully. We will reply to you soon.' })
+  }
+
+  async deleteEmail(@Param() params: { id: string }, req: Request, res: Response) {
+    const { id } = params
+
+    const foundEmail = await this.prisma.email.findUnique({
+      where: {
+        id
+      }
+    })
+
+    if (!foundEmail) {
+      throw new BadRequestException('Email doesn\'t exist')
+    }
+
+    await this.prisma.email.delete({
+      where: {
+        id
+      }
+    })
+
+    return res.send({ message: 'Email deleted successfully.' })
   }
 }

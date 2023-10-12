@@ -179,7 +179,7 @@ export class TourInfosService {
         duration: true,
         ageGroup: true,
         specials: true,
-        tags: true
+        tags: true,
       },
     })
 
@@ -201,7 +201,7 @@ export class TourInfosService {
 
     const featuredTours = await this.prisma.tourInfo.findMany({
       where: {
-        isFeatured: "true",
+        isFeatured: true,
       },
       include: {
         ageGroup: true,
@@ -218,7 +218,19 @@ export class TourInfosService {
       where: {
         id,
       },
-
+      include: {
+        ageGroup: true,
+        duration: true,
+        faqs: true,
+        images: true,
+        inclusions: true,
+        itineraries: true,
+        likes: true,
+        registeredTours: true,
+        reviews: true,
+        specials: true,
+        tags: true,
+      },
     })
 
     if (!foundTourUnfo) {

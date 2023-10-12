@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTourInfoDto {
   @IsNotEmpty()
@@ -22,11 +22,33 @@ export class CreateTourInfoDto {
   @IsNumber()
   public rateAmount: number
 
-
+  @IsNotEmpty()
+  @IsBoolean()
+  public isFeatured?: boolean
 
   @IsNotEmpty()
   @IsString()
-  public imageUrl: string
+  public description: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public activity: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public physical: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  public groupSize: number
+
+  @IsNotEmpty()
+  @IsNumber()
+  public season: number
+
+  @IsNotEmpty()
+  @IsString()
+  public inclusionText: string
 
   @IsNotEmpty()
   @Type(() => Date)
@@ -58,8 +80,31 @@ export class UpdateTourInfoDto {
   public rateAmount: number
 
   @IsNotEmpty()
+  @IsBoolean()
+  public isFeatured?: boolean
+  @IsNotEmpty()
   @IsString()
-  public imageUrl: string
+  public description: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public activity: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public physical: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  public groupSize: number
+
+  @IsNotEmpty()
+  @IsNumber()
+  public season: number
+
+  @IsNotEmpty()
+  @IsString()
+  inclusionText: string
 
   @IsNotEmpty()
   @Type(() => Date)
