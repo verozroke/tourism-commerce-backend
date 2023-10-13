@@ -43,7 +43,7 @@ export class CreateTourInfoDto {
   public groupSize: number
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   public season: string
 
   @IsNotEmpty()
@@ -54,7 +54,6 @@ export class CreateTourInfoDto {
   @Type(() => Date)
   @IsDate()
   date: Date
-
 }
 
 
