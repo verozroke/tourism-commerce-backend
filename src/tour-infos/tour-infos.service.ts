@@ -214,19 +214,6 @@ export class TourInfosService {
       where: {
         id,
       },
-      include: {
-        ageGroup: true,
-        duration: true,
-        faqs: true,
-        images: true,
-        inclusions: true,
-        itineraries: true,
-        likes: true,
-        registeredTours: true,
-        reviews: true,
-        specials: true,
-        tags: true,
-      },
     })
 
     if (!foundTourUnfo) {
@@ -238,8 +225,30 @@ export class TourInfosService {
         id,
       },
       include: {
-        duration: true
-      }
+        ageGroup: true,
+        duration: true,
+        faqs: true,
+        images: true,
+        inclusions: {
+          orderBy: {
+            type: 'desc'
+          }
+        },
+        itineraries: {
+          orderBy: {
+            dayNumber: 'asc'
+          }
+        },
+        likes: true,
+        registeredTours: true,
+        reviews: {
+          include: {
+            user: true
+          }
+        },
+        specials: true,
+        tags: true,
+      },
     })
     return res.send(tourInfo)
   }

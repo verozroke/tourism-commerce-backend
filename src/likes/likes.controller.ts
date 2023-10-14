@@ -22,7 +22,7 @@ export class LikesController {
   @UseGuards(JwtAuthGuard)
   @Post('/like')
   createLike(@Req() req: Request, @Body() dto: CreateLikeDto, @Res() res: Response) {
-    return this.likesService.createLike(dto, req, res)
+    return this.likesService.like(dto, req, res)
   }
 
   @UseGuards(JwtAuthGuard)

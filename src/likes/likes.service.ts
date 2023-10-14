@@ -34,13 +34,32 @@ export class LikesService {
     return res.send(JSON.stringify(Like))
   }
 
-  async createLike(dto: CreateLikeDto, req: Request, res: Response) {
-    const like = await this.prisma.like.create({
+  async like(dto: CreateLikeDto, req: Request, res: Response) {
+    const { tourInfoId, userId } = dto
+
+    const isLikeExist = await this.prisma.like.findMany({
+      where: {
+        tourInfoId,
+        userId
+      }
+    })
+
+    if (isLikeExist && isLikeExist.length > 0) {
+      await this.prisma.like.deleteMany({
+        where: {
+          tourInfoId,
+          userId,
+        }
+      })
+
+      return res.send({ message: 'Removed this tour to your favorites' })
+    }
+
+    await this.prisma.like.create({
       data: dto
     })
 
-    return res.send(JSON.stringify(like))
-
+    return res.send({ message: 'Added this tour from your favorites' })
   }
 
   async updateLike(id: string, dto: UpdateLikeDto, req: Request, res: Response) {
