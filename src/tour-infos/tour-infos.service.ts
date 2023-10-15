@@ -48,7 +48,6 @@ export class TourInfosService {
 
   constructor(private prisma: PrismaService) { }
 
-
   async getTourLength(query: TourLengthQueryParams, req: Request, res: Response) {
     const {
       durations,
@@ -113,6 +112,7 @@ export class TourInfosService {
 
     return res.send(searchedTourInfos)
   }
+
   async getTourInfos(query: queryParams, req: Request, res: Response) {
     const {
       durations,
@@ -320,5 +320,28 @@ export class TourInfosService {
     return res.send(JSON.stringify(deletedTourInfo))
   }
 
+  async getFavourites(userId: string, req: Request, res: Response) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      }
+    })
+
+    if (!user) {
+      throw new BadRequestException('User not found')
+    }
+
+    const likedTours = await this.prisma.tourInfo.findMany({
+      where: {
+        likes: {
+          some: {
+            userId,
+          }
+        }
+      }
+    })
+
+    return res.send(likedTours)
+  }
 
 }

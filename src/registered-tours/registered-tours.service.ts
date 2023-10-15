@@ -15,6 +15,56 @@ export class RegisteredToursService {
     return res.send(JSON.stringify(registeredTours))
   }
 
+  async getPendingTours(userId: string, req: Request, res: Response) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      }
+    })
+
+    if (!user) {
+      throw new BadRequestException('User not found')
+    }
+
+    const registeredTours = await this.prisma.tourInfo.findMany({
+      where: {
+        registeredTours: {
+          some: {
+            userId,
+            status: 'pending'
+          }
+        }
+      }
+    })
+
+    return res.send(registeredTours)
+  }
+
+  async getClosedTours(userId: string, req: Request, res: Response) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      }
+    })
+
+    if (!user) {
+      throw new BadRequestException('User not found')
+    }
+
+    const registeredTours = await this.prisma.tourInfo.findMany({
+      where: {
+        registeredTours: {
+          some: {
+            userId,
+            status: 'closed'
+          }
+        }
+      }
+    })
+
+    return res.send(registeredTours)
+  }
+
   async getRegisteredTourById(id: string, req: Request, res: Response) {
     const foundRegisteredTour = await this.prisma.registeredTour.findUnique({
       where: {

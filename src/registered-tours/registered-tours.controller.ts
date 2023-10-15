@@ -14,6 +14,18 @@ export class RegisteredToursController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('/:userId/pending')
+  getPendingTours(@Param() params: { userId: string }, @Req() req: Request, @Res() res: Response) {
+    return this.registeredToursService.getPendingTours(params.userId, req, res)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/:userId/closed')
+  getClosedTours(@Param() params: { userId: string }, @Req() req: Request, @Res() res: Response) {
+    return this.registeredToursService.getClosedTours(params.userId, req, res)
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get('/registered-tour/:id')
   getRegisteredTourById(@Param() params: { id: string }, @Req() req: Request, @Res() res: Response) {
     return this.registeredToursService.getRegisteredTourById(params.id, req, res)

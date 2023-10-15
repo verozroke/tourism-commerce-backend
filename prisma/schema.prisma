@@ -63,6 +63,7 @@ model RegisteredTour {
   date       DateTime
   travelers  String
   transports String
+  status     String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt()
 

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsUrl } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, IsUrl, Length } from "class-validator";
 
 export class UploadAvatarDto {
   @IsNotEmpty()
@@ -25,9 +25,11 @@ export class ChangeNameDto {
 export class ChangePasswordDto {
   @IsNotEmpty()
   @IsString()
+  @Length(8, 20, { message: 'Password has to be at beetween 8 and 20 characters' })
   oldPassword: string
 
   @IsNotEmpty()
   @IsString()
+  @Length(8, 20, { message: 'Password has to be at beetween 8 and 20 characters' })
   newPassword: string
 }

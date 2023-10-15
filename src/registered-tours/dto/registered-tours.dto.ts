@@ -1,6 +1,8 @@
 import { Type } from "class-transformer";
 import { IsNotEmpty, IsString, IsDate } from "class-validator";
 
+export type RegTourStatusType = 'pending' | 'closed'
+
 export class CreateRegisteredTourDto {
   @IsNotEmpty()
   @Type(() => Date)
@@ -14,6 +16,10 @@ export class CreateRegisteredTourDto {
   @IsNotEmpty()
   @IsString()
   transports: string
+
+  @IsNotEmpty()
+  @IsString()
+  status: RegTourStatusType
 
   @IsNotEmpty()
   @IsString()

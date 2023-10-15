@@ -15,6 +15,12 @@ export class TourInfosController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('/:userId/favourites')
+  getFavourites(@Param() params: { userId: string }, @Req() req: Request, @Res() res: Response) {
+    return this.tourInfosService.getFavourites(params.userId, req, res)
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get('/length')
   getTourLength(@Query() query, @Req() req: Request, @Res() res: Response) {
     return this.tourInfosService.getTourLength(query, req, res)
