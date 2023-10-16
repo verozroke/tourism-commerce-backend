@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, Param } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { Request, Response } from 'express'
 import { CreateEmailDto } from './dto/email.dto';
 

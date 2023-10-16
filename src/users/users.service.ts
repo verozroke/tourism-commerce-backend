@@ -1,7 +1,7 @@
 import { BadRequestException, Body, ForbiddenException, Injectable, NotFoundException, Param, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import * as bcrypt from 'bcrypt';
-import { PrismaService } from 'prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { ChangeEmailDto, ChangeNameDto, ChangePasswordDto, UploadAvatarDto } from './dto/users.dto';
 
 @Injectable()
