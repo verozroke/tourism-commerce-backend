@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LikesService } from './likes.service';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../../src/auth/jwt.guard';
 import { CreateLikeDto, UpdateLikeDto } from './dto/likes.dto';
 
 @Controller('likes')

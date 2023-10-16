@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { RegisteredToursService } from './registered-tours.service';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../../src/auth/jwt.guard';
 import { CreateRegisteredTourDto, UpdateRegisteredTourDto } from './dto/registered-tours.dto';
 
 @Controller('registered-tours')

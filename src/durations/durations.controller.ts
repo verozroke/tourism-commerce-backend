@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { DurationsService } from './durations.service';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../../src/auth/jwt.guard';
 import { CreateDurationDto, UpdateDurationDto } from './dto/durations.dto';
 
 @Controller('durations')

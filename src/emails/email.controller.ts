@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { EmailService } from './email.service';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../../src/auth/jwt.guard';
 import { Request, Response } from 'express';
 import { CreateEmailDto } from './dto/email.dto';
 

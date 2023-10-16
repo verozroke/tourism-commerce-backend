@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { SpecialsService } from './specials.service';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../../src/auth/jwt.guard';
 import { CreateSpecialDto, UpdateSpecialDto } from './dto/specials.dto';
 
 @Controller('specials')

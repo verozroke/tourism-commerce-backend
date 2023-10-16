@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AgeGroupsService } from './age-groups.service';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../../src/auth/jwt.guard';
 import { CreateAgeGroupDto, UpdateAgeGroupDto } from './dto/age-groups.dto';
 
 @Controller('ageGroups')
