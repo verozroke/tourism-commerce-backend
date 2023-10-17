@@ -38,5 +38,9 @@ import { TagsModule } from './tags/tags.module';
     TagsModule,
     TourGuidesModule,
   ],
+
+
+
 })
+
 export class AppModule { }
