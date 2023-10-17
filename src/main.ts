@@ -9,9 +9,10 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     origin: 'https://tourism-commerce.vercel.app',
-    methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
+    // methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
     credentials: true,
-    preflightContinue: false,
   });
   await app.listen(4000);
 }
