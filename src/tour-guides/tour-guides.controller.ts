@@ -13,25 +13,25 @@ export class TourGuidesController {
     return this.tourGuidesService.getTourGuides(req, res)
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('/tour-guide/:id')
   getTourInfoById(@Param() params: { id: string }, @Req() req: Request, @Res() res: Response) {
     return this.tourGuidesService.getTourGuideById(params.id, req, res)
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post('/tour-guide')
   createTourGuide(@Req() req: Request, @Body() dto: CreateTourGuideDto, @Res() res: Response) {
     return this.tourGuidesService.createTourGuide(dto, req, res)
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Put('/tour-guide/:id')
   updateTourGuide(@Param() params: { id: string }, @Req() req: Request, @Body() dto: UpdateTourGuideDto, @Res() res: Response) {
     return this.tourGuidesService.updateTourGuide(params.id, dto, req, res)
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Delete('/tour-guide/:id')
   deleteTourGuide(@Param() params: { id: string }, @Req() req: Request, @Res() res: Response) {
     return this.tourGuidesService.deleteTourGuide(params.id, req, res)
