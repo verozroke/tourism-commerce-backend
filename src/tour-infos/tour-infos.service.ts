@@ -100,22 +100,18 @@ export class TourInfosService {
 
   async searchTourInfos(q: string, req: Request, res: Response) {
 
-    // const searchedTourInfos = await this.prisma.tourInfo.findMany({
-    //   where: {
+    const searchedTourInfos = await this.prisma.tourInfo.findMany({
+      where: {
+        title: {
+          mode: 'insensitive',
+          contains: q,
+        }
+      },
+      take: 3
+    })
 
-    //     title: {
-    //       // contains: q,
-    //       contains: q,
 
-    //       // mode: 'insensitive'
-    //     }
-
-    //   },
-    //   take: 3
-    // })
-
-    // searchedTourInfos
-    return res.send({ message: 'hhelo' })
+    return res.send(searchedTourInfos)
   }
 
   async getTourInfos(query: queryParams, req: Request, res: Response) {
